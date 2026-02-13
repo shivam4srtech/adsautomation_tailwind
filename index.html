@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ads automation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+    <style>
+        #raw_data input{
+            min-width: 200px
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-7xl mx-auto p-6">
+            <h1 class="text-[20px] text-black-800 font-semibold">Ads Automation</h1>    
+    <div class="mx-auto mt-10 bg-white shadow-sm rounded-lg border border-gray-200">
+
+        <!-- Tabs Header -->
+        <div class="flex border-b border-gray-200 text-sm font-medium">
+            <button 
+                class="tab-btn px-4 py-3 text-blue-600 border-b-2 border-blue-600 transition cursor-pointer"
+                data-tab="raw_data">
+                Raw Data
+            </button>
+            <button 
+                class="tab-btn px-4 py-3 text-gray-500 hover:text-gray-700 transition cursor-pointer"
+                data-tab="image_update">
+                Image Update
+            </button>
+
+            <button 
+                class="tab-btn px-4 py-3 text-gray-500 hover:text-gray-700 transition cursor-pointer"
+                data-tab="bidding">
+                Bidding Update
+            </button>
+
+            <button 
+                class="tab-btn px-4 py-3 text-gray-500 hover:text-gray-700 transition cursor-pointer"
+                data-tab="coupon_update">
+               Coupon Update
+            </button>
+            <button 
+                class="tab-btn px-4 py-3 text-gray-500 hover:text-gray-700 transition cursor-pointer"
+                data-tab="coupon_check">
+               Coupon Check
+            </button>
+        </div>
+
+        <!-- Tabs Content -->
+        <div class="p-5 text-sm text-gray-600">
+            <div id="raw_data" class="tab-content">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-5" style="overflow: hidden">
+                        <h2 class="text-sm font-semibold text-gray-800">
+                        Raw data
+                        </h2>
+                        <div class="mt-5 text-right flex items-center">
+                            <!-- Toggle Switch -->
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer edit-toggle">
+                                <div class="w-9 h-5 bg-gray-300 rounded-full peer 
+                                            peer-checked:bg-blue-600 
+                                            after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+                                            after:bg-white after:border after:rounded-full 
+                                            after:h-4 after:w-4 after:transition-all 
+                                            peer-checked:after:translate-x-4">
+                                </div>
+                                <span class="ml-2 text-xs text-gray-600 font-medium">
+                                    Edit
+                                </span>
+                            </label>
+                            <!-- Update Button -->
+                            <div class="px-2">
+                                <button class="update-btn hidden px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Table Head -->
+                    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+                        <table class="min-w-full text-sm text-left text-gray-600"> 
+                            
+                            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
+                                <tr>
+                                    <th class="px-6 py-3">Traffic</th>
+                                    <th class="px-6 py-3">Coversion Goal</th>
+                                    <th class="px-6 py-3">Campaign Type</th>
+                                    <th class="px-6 py-3">Target Url</th>
+                                    <th class="px-6 py-3">Campaign Name</th>
+                                    <th class="px-6 py-3">Bidding</th>
+                                    <th class="px-6 py-3">Budget</th>
+                                    <th class="px-6 py-3">Target CPA</th>
+                                    <th class="px-6 py-3">Networks</th>
+                                    <th class="px-6 py-3">Target Location</th>
+                                    <th class="px-6 py-3">Language</th>
+                                    <th class="px-6 py-3">Keywords</th>
+                                    <th class="px-6 py-3">Display Path</th>
+                                    <th class="px-6 py-3">Coupon</th>
+                                    <th class="px-6 py-3">Headlines</th>
+                                    <th class="px-6 py-3">Description</th>
+                                    <th class="px-6 py-3">Sitelinks</th>
+                                    <th class="px-6 py-3">Call Outs</th>
+                                    <th class="px-6 py-3">Promotions</th>
+                                    <th class="px-6 py-3">Structed Snippets</th>
+                                    <th class="px-6 py-3">Negative Keywords</th>
+                                    <th class="px-6 py-3">error_message</th>
+                                    <th class="px-6 py-3">Images</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Table Body -->
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value=""
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    
+                                </tr>
+
+                            
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="image_update" class="tab-content hidden">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-sm font-semibold text-gray-800">
+                        Image Update
+                        </h2>
+                        <div class="mt-5 text-right flex items-center">
+                            <!-- Toggle Switch -->
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer edit-toggle">
+                                <div class="w-9 h-5 bg-gray-300 rounded-full peer 
+                                            peer-checked:bg-blue-600 
+                                            after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+                                            after:bg-white after:border after:rounded-full 
+                                            after:h-4 after:w-4 after:transition-all 
+                                            peer-checked:after:translate-x-4">
+                                </div>
+                                <span class="ml-2 text-xs text-gray-600 font-medium">
+                                    Edit
+                                </span>
+                            </label>
+                            <!-- Update Button -->
+                            <div class="px-2">
+                                <button class="update-btn hidden px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Table Head -->
+                    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+                        <table class="min-w-full text-sm text-left text-gray-600"> 
+                            
+                            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
+                                <tr>
+                                    <th class="px-6 py-3">Campaign Name</th>
+                                    <th class="px-6 py-3">Target CPA</th>
+                                    <th class="px-6 py-3">Target Url</th>
+                                    <th class="px-6 py-3">Images</th>
+                                    <th class="px-6 py-3">error_message_in_update</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Table Body -->
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                    <input type="text" value="Campaign Name"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                    <input type="text" value="Target CPA"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Target URL"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <img src="" alt="img">
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-3 py-1 text-xs font-medium text-red-700 bg-red-100">
+                                            Error Message
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- {{-- bidding Update --}} -->
+            <div id="bidding" class="tab-content hidden">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-sm font-semibold text-gray-800">
+                            Bidding Update
+                        </h2>
+                        <div class="mt-5 text-right flex items-center">
+                            <!-- Toggle Switch -->
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer edit-toggle">
+                                <div class="w-9 h-5 bg-gray-300 rounded-full peer 
+                                            peer-checked:bg-blue-600 
+                                            after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+                                            after:bg-white after:border after:rounded-full 
+                                            after:h-4 after:w-4 after:transition-all 
+                                            peer-checked:after:translate-x-4">
+                                </div>
+                                <span class="ml-2 text-xs text-gray-600 font-medium">
+                                    Edit
+                                </span>
+                            </label>
+                            <!-- Update Button -->
+                            <div class="px-2">
+                                <button class="update-btn hidden px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Table Head -->
+                    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+                        <table class="min-w-full text-sm text-left text-gray-600"> 
+                            
+                            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
+                                <tr>
+                                    <th class="px-6 py-3">Campaign Name</th>
+                                    <th class="px-6 py-3">Target CPA</th>
+                                    <th class="px-6 py-3">Target Url</th>
+                                    <th class="px-6 py-3">Bidding New</th>
+                                    <th class="px-6 py-3">Target CPA</th>
+                                    <th class="px-6 py-3">% change</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Table Body -->
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value="Campaign Name"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Target CPA"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Target URL"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Bidding New"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Target CPA"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="% Change"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                </tr>
+
+                            
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- {{-- Coupon Update --}} -->
+            <div id="coupon_update" class="tab-content hidden">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-sm font-semibold text-gray-800">
+                            Coupon Update
+                        </h2>
+                        <div class="mt-5 text-right flex items-center">
+                            <!-- Toggle Switch -->
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer edit-toggle">
+                                <div class="w-9 h-5 bg-gray-300 rounded-full peer 
+                                            peer-checked:bg-blue-600 
+                                            after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+                                            after:bg-white after:border after:rounded-full 
+                                            after:h-4 after:w-4 after:transition-all 
+                                            peer-checked:after:translate-x-4">
+                                </div>
+                                <span class="ml-2 text-xs text-gray-600 font-medium">
+                                    Edit
+                                </span>
+                            </label>
+                            <!-- Update Button -->
+                            <div class="px-2">
+                                <button class="update-btn hidden px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Table Head -->
+                    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+                        <table class="min-w-full text-sm text-left text-gray-600"> 
+                            
+                            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
+                                <tr>
+                                    <th class="px-6 py-3">Campaign Name</th>
+                                    <th class="px-6 py-3">Target Url</th>
+                                    <th class="px-6 py-3">Update New Coupon</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Table Body -->
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value="Campaign Name"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Target URL"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Update New Coupon"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    
+                                </tr>
+
+                            
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- {{-- Coupon Check --}} -->
+            <div id="coupon_check" class="tab-content hidden">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-sm font-semibold text-gray-800">
+                          Coupon Check
+                        </h2>
+                        <div class="mt-5 text-right flex items-center">
+                            <!-- Toggle Switch -->
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer edit-toggle">
+                                <div class="w-9 h-5 bg-gray-300 rounded-full peer 
+                                            peer-checked:bg-blue-600 
+                                            after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+                                            after:bg-white after:border after:rounded-full 
+                                            after:h-4 after:w-4 after:transition-all 
+                                            peer-checked:after:translate-x-4">
+                                </div>
+                                <span class="ml-2 text-xs text-gray-600 font-medium">
+                                    Edit
+                                </span>
+                            </label>
+                            <!-- Update Button -->
+                            <div class="px-2">
+                                <button class="update-btn hidden px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Table Head -->
+                    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+                        <table class="min-w-full text-sm text-left text-gray-600"> 
+                            
+                            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
+                                <tr>
+                                    <th class="px-6 py-3">Campaign Name</th>
+                                    <th class="px-6 py-3">Target Url</th>
+                                    <th class="px-6 py-3">coupon check</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Table Body -->
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        <input type="text" value="Campaign Name"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Target URL"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" value="Coupon Check"
+                                            class="editable-field w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                            readonly disabled/>
+                                    </td>
+                                    
+                                </tr>
+
+                            
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<script src="/app.js"></script>    
+</body>
+</html>
